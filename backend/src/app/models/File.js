@@ -6,6 +6,12 @@ class File extends Model {
 			{
 				name: Sequelize.STRING,
 				path: Sequelize.STRING,
+				url: {
+					type: Sequelize.VIRTUAL,
+					get() {
+						return `http://localhost:3434/files/${this.path}`;
+					},
+				},
 			},
 			{
 				sequelize,
@@ -16,7 +22,7 @@ class File extends Model {
 	}
 
 	static associate(models) {
-		this.belongsTo(models.File, { foreignKey: 'banner_id' });
+		this.belongsTo(models.File, { foreignKey: 'banner_id', as: 'avatar' });
 	}
 }
 
