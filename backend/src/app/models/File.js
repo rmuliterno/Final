@@ -14,6 +14,10 @@ class File extends Model {
 
 		return this;
 	}
+
+	static associate(models) {
+		this.belongsTo(models.File, { foreignKey: 'banner_id' });
+	}
 }
 
 export default File;
