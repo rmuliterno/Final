@@ -27,8 +27,6 @@ class MeetupController {
 			banner_id,
 		} = req.body;
 
-		console.log(location);
-
 		const checkIsProvider = await User.findOne({
 			where: { id: provider_id, provider: true },
 		});
