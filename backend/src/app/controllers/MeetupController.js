@@ -1,9 +1,33 @@
 import * as Yup from 'yup';
+import { startOfHour, parseISO, isBefore } from 'date-fns';
 import Meetup from '../models/Meetup';
 import File from '../models/File';
 import User from '../models/User';
 
 class MeetupController {
+	async index(req, res) {
+		const meetups = await Meetup.findAll({
+			where: { provider_id: req.userId, canceled_at: null },
+			order: ['date'],
+			attributes: [
+				'id',
+				'title',
+				'description',
+				'date',
+				'banner_id',
+				'location',
+			],
+			include: [
+				{
+					model: File,
+					as: 'avatar',
+					attributes: ['id', 'path', 'url'],
+				},
+			],
+		});
+		return res.json(meetups);
+	}
+
 	async store(req, res) {
 		const schema = Yup.object().shape({
 			title: Yup.string().required(),
@@ -37,6 +61,22 @@ class MeetupController {
 			});
 		}
 
+		const hourStart = startOfHour(parseISO(date));
+
+		if (isBefore(hourStart, new Date())) {
+			return res
+				.status(400)
+				.json({ error: 'Past dates are not permitted' });
+		}
+
+		const checkAvailable = await Meetup.findOne({
+			where: { provider_id, canceled_at: null, date: hourStart },
+		});
+
+		if (checkAvailable) {
+			return res.status(400).json({ error: 'Meetup date not available' });
+		}
+
 		const meetup = await Meetup.create({
 			title,
 			description,
@@ -47,20 +87,6 @@ class MeetupController {
 		});
 
 		return res.json(meetup);
-	}
-
-	async index(req, res) {
-		const meetups = await Meetup.findAll({
-			attributes: ['id', 'title', 'description', 'date', 'banner_id'],
-			include: [
-				{
-					model: File,
-					as: 'avatar',
-					attributes: ['name', 'path', 'url'],
-				},
-			],
-		});
-		return res.json(meetups);
 	}
 }
 
