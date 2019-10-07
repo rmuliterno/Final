@@ -17,6 +17,7 @@ class MeetupController {
 				'date',
 				'banner_id',
 				'location',
+				'provider_id',
 			],
 			include: [
 				{
