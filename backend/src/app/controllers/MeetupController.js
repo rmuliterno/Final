@@ -9,6 +9,7 @@ class MeetupController {
 			title: Yup.string().required(),
 			description: Yup.string().required(),
 			location: Yup.string().required(),
+			banner_id: Yup.number().required(),
 			provider_id: Yup.number().required(),
 			date: Yup.date().required(),
 		});
@@ -17,7 +18,16 @@ class MeetupController {
 			return res.status(400).json({ error: 'Validation failed' });
 		}
 
-		const { title, description, location, provider_id, date } = req.body;
+		const {
+			title,
+			description,
+			location,
+			provider_id,
+			date,
+			banner_id,
+		} = req.body;
+
+		console.log(location);
 
 		const checkIsProvider = await User.findOne({
 			where: { id: provider_id, provider: true },
@@ -33,6 +43,7 @@ class MeetupController {
 			title,
 			description,
 			location,
+			banner_id,
 			provider_id,
 			date,
 		});

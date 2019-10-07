@@ -27,7 +27,7 @@ class UserController {
 
 		const { id, name, email, provider } = await User.create(req.body);
 
-		return res.json(id, name, email, provider);
+		return res.json({ id, name, email, provider });
 	}
 
 	async update(req, res) {
@@ -42,6 +42,7 @@ class UserController {
 				),
 			passwordConfirm: Yup.string().when('password', (password, field) =>
 				password ? field.required().oneOf([Yup.ref('password')]) : field
+			),
 		});
 
 		if (!(await schema.isValid(req.body))) {

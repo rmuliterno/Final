@@ -24,10 +24,7 @@ module.exports = {
 				type: Sequelize.DATE,
 			},
 			user_id: {
-				type: Sequelize.INTEGER,
-				references: { model: 'users', key: 'id' },
-				onUpdate: 'CASCADE',
-				onDelete: 'SET NULL',
+				type: Sequelize.ARRAY(Sequelize.INTEGER),
 				allowNull: true,
 			},
 			provider_id: {

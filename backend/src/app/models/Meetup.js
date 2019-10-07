@@ -6,6 +6,7 @@ class Meetup extends Model {
 			{
 				title: Sequelize.STRING,
 				description: Sequelize.STRING,
+				location: Sequelize.STRING,
 				date: Sequelize.DATE,
 				canceled_at: Sequelize.DATE,
 			},
@@ -26,6 +27,7 @@ class Meetup extends Model {
 			foreignKey: 'provider_id',
 			as: 'provider',
 		});
+		this.belongsTo(models.File, { foreignKey: 'banner_id', as: 'avatar' });
 	}
 }
 
