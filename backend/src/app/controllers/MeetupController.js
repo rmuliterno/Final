@@ -6,8 +6,9 @@ import User from '../models/User';
 
 class MeetupController {
 	async index(req, res) {
+		//  Listing every non cancelled Meetup
 		const meetups = await Meetup.findAll({
-			where: { provider_id: req.userId, canceled_at: null },
+			where: { canceled_at: null },
 			order: ['date'],
 			attributes: [
 				'id',
