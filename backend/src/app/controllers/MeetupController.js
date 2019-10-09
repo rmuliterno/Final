@@ -122,7 +122,7 @@ class MeetupController {
 
 		if (!checkProvider) {
 			return res.status(401).json({
-				error: "Only this meetup's providers can edit this lineup",
+				error: "Only this meetup's providers can edit this meetup",
 			});
 		}
 
@@ -141,6 +141,30 @@ class MeetupController {
 			date,
 			banner_id,
 		});
+	}
+
+	async delete(req, res) {
+		const meetup = await Meetup.findByPk(req.params.id);
+
+		const hourStart = startOfHour(meetup.date);
+
+		if (isBefore(hourStart, new Date())) {
+			return res
+				.status(401)
+				.json({ error: 'You cannot delete past meetups' });
+		}
+
+		const checkProvider = meetup.provider_id === req.userId;
+
+		if (!checkProvider) {
+			return res.status(401).json({
+				error: "Only this meetup's providers can delete this meetup",
+			});
+		}
+
+		await meetup.destroy();
+
+		return res.json({ message: 'Meetup deleted succesfully' });
 	}
 }
 
