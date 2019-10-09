@@ -110,7 +110,10 @@ class MeetupController {
 
 		const meetup = await Meetup.findByPk(req.params.id);
 
-		const hourStart = startOfHour(parseISO(meetup.date));
+		const hourStart = startOfHour(meetup.date);
+
+		console.log(hourStart);
+		console.log(new Date());
 
 		if (isBefore(hourStart, new Date())) {
 			return res
@@ -121,9 +124,9 @@ class MeetupController {
 		const checkProvider = meetup.provider_id === req.userId;
 
 		if (!checkProvider) {
-			return res
-				.status(401)
-				.json({ error: 'Only providers can edit this lineup' });
+			return res.status(401).json({
+				error: "Only this meetup's providers can edit this lineup",
+			});
 		}
 
 		const {
