@@ -112,9 +112,6 @@ class MeetupController {
 
 		const hourStart = startOfHour(meetup.date);
 
-		console.log(hourStart);
-		console.log(new Date());
-
 		if (isBefore(hourStart, new Date())) {
 			return res
 				.status(401)
