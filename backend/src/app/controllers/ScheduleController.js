@@ -19,6 +19,7 @@ class ScheduleController {
 
 		const { date } = req.query;
 		const parsedDate = parseISO(date);
+		console.log(parsedDate);
 
 		const meetups = await Meetup.findAll({
 			where: {
