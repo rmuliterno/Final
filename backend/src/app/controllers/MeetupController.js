@@ -94,6 +94,54 @@ class MeetupController {
 
 		return res.json(meetup);
 	}
+
+	async update(req, res) {
+		const schema = Yup.object().shape({
+			title: Yup.string(),
+			description: Yup.string(),
+			location: Yup.string(),
+			date: Yup.date(),
+			banner_id: Yup.number(),
+		});
+
+		if (!(await schema.isValid(req.body))) {
+			return res.status(400).json({ error: 'Error on validation' });
+		}
+
+		const meetup = await Meetup.findByPk(req.params.id);
+
+		const hourStart = startOfHour(parseISO(meetup.date));
+
+		if (isBefore(hourStart, new Date())) {
+			return res
+				.status(401)
+				.json({ error: 'You cannot edit past meetups' });
+		}
+
+		const checkProvider = meetup.provider_id === req.userId;
+
+		if (!checkProvider) {
+			return res
+				.status(401)
+				.json({ error: 'Only providers can edit this lineup' });
+		}
+
+		const {
+			title,
+			description,
+			location,
+			date,
+			banner_id,
+		} = await meetup.update(req.body);
+
+		return res.json({
+			title,
+			description,
+			location,
+			date,
+			banner_id,
+		});
+	}
 }
 
 export default new MeetupController();
