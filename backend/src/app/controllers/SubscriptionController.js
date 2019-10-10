@@ -1,38 +1,66 @@
 // import * as Yup from 'yup';
 
+import * as Yup from 'yup';
 import User from '../models/User';
 import Meetup from '../models/Meetup';
 import Subscription from '../models/Subscription';
-
-
-import * as Yup from 'yup';
-import { startOfHour, parseISO, isBefore } from 'date-fns';
-import Meetup from '../models/Meetup';
-import File from '../models/File';
-import User from '../models/User';
 
 class MeetupController {
 	async store(req, res) {
 		const meetup_id = req.params.id;
 		const user_id = req.userId;
 
-		console.log(meetup_id, 'id da meetup');
-		console.log(user_id, 'id do user');
+		const checkExists = await Meetup.findOne({ where: { id: meetup_id } });
+		if (!checkExists) {
+			return res.status(404).json({ error: 'Meetup not found' });
+		}
 
-		// const checkExists = await Meetup.findOne({ where: { id: meetup_id } });
-		// if (!checkExists) {
-		// 	return res.status(404).json({ error: 'Meetup not found' });
-		// }
+		const { date, provider_id, past } = await Meetup.findOne({
+			where: { id: meetup_id },
+		});
 
-		// const checkOrganizer = await Meetup.findOne({
-		// 	where: { provider_id: user_id, id: meetup_id },
-		// });
+		if (provider_id === req.userId) {
+			return res
+				.status(401)
+				.json({ error: 'You cannot subscribe to your own meetups' });
+		}
 
-		// if (checkOrganizer) {
-		// 	return res
-		// 		.status(401)
-		// 		.json({ error: 'You cannot subscribe to your own meetups' });
-		// }
+		if (past) {
+			return res
+				.status(401)
+				.json({ error: 'You cannot subscribe to past meetups' });
+		}
+
+		const checkSubscribed = await Subscription.findOne({
+			where: { user_id: req.userId, meetup_id: req.params.id },
+		});
+
+		if (checkSubscribed) {
+			return res.status(400).json({
+				error: 'You are already subscribed to this meetup',
+			});
+		}
+
+		const checkDate = await Subscription.findOne({
+			where: {
+				user_id: req.userId,
+			},
+			include: [
+				{
+					model: Meetup,
+					as: 'meetup',
+					where: {
+						date,
+					},
+				},
+			],
+		});
+
+		if (checkDate) {
+			return res.status(401).json({
+				error: 'Cannot subscribe to another meetup at the same time',
+			});
+		}
 
 		const subscription = await Subscription.create({
 			meetup_id,
