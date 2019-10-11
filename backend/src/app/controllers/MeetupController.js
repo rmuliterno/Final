@@ -12,16 +12,7 @@ class MeetupController {
 		const meetups = await Meetup.findAll({
 			where: { canceled_at: null },
 			order: ['date'],
-			attributes: [
-				'id',
-				'title',
-				'description',
-				'date',
-				'banner_id',
-				'users_id',
-				'location',
-				'provider_id',
-			],
+			attributes: ['id', 'title', 'description', 'date', 'location'],
 			limit: 10,
 			offset: (page - 1) * 10,
 			include: [
@@ -32,8 +23,8 @@ class MeetupController {
 				},
 				{
 					model: User,
-					as: 'users',
-					attributes: ['name', 'email'],
+					as: 'provider',
+					attributes: ['id', 'name', 'email'],
 				},
 			],
 		});
