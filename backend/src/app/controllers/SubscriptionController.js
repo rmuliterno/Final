@@ -3,6 +3,8 @@ import User from '../models/User';
 import Meetup from '../models/Meetup';
 import Subscription from '../models/Subscription';
 
+import Mail from '../../lib/Mail';
+
 class SubscriptionController {
 	async index(req, res) {
 		const user_id = req.userId;
@@ -23,7 +25,7 @@ class SubscriptionController {
 			return res.status(404).json({ error: 'Meetup not found' });
 		}
 
-		const { date, provider_id, past } = await Meetup.findOne({
+		const { title, date, provider_id, past } = await Meetup.findOne({
 			where: { id: meetup_id },
 		});
 
@@ -73,6 +75,14 @@ class SubscriptionController {
 		const subscription = await Subscription.create({
 			meetup_id,
 			user_id,
+		});
+
+		const { name, email } = await User.findByPk(provider_id);
+
+		await Mail.sendMail({
+			to: `${name} <${email}>`,
+			subject: 'New subscription!',
+			text: `You have a new subscription on your meetup '${title}'`,
 		});
 
 		return res.json(subscription);
