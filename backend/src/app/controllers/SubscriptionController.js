@@ -8,8 +8,8 @@ class SubscriptionController {
 		const user_id = req.userId;
 
 		const meetups = await Subscription.findAll({
-			where: { user_id }
-		})
+			where: { user_id, past: false },
+		});
 
 		return res.json(meetups);
 	}
