@@ -1,11 +1,19 @@
-// import * as Yup from 'yup';
-
 import * as Yup from 'yup';
 import User from '../models/User';
 import Meetup from '../models/Meetup';
 import Subscription from '../models/Subscription';
 
-class MeetupController {
+class SubscriptionController {
+	async index(req, res) {
+		const user_id = req.userId;
+
+		const meetups = await Subscription.findAll({
+			where: { user_id }
+		})
+
+		return res.json(meetups);
+	}
+
 	async store(req, res) {
 		const meetup_id = req.params.id;
 		const user_id = req.userId;
@@ -71,4 +79,4 @@ class MeetupController {
 	}
 }
 
-export default new MeetupController();
+export default new SubscriptionController();
