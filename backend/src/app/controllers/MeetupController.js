@@ -1,16 +1,33 @@
 import * as Yup from 'yup';
-import { startOfHour, parseISO, isBefore } from 'date-fns';
+import { Op } from 'sequelize';
+import {
+	startOfHour,
+	parseISO,
+	isBefore,
+	startOfDay,
+	endOfDay,
+} from 'date-fns';
 import Meetup from '../models/Meetup';
 import File from '../models/File';
 import User from '../models/User';
 
 class MeetupController {
 	async index(req, res) {
-		const { page } = req.query;
+		const { page, date } = req.query;
+
+		const where = { canceled_at: null };
+
+		if (date) {
+			const searchDate = parseISO(date);
+
+			where.date = {
+				[Op.between]: [startOfDay(searchDate), endOfDay(searchDate)],
+			};
+		}
 
 		//  Listing every non cancelled Meetup
 		const meetups = await Meetup.findAll({
-			where: { canceled_at: null },
+			where,
 			order: ['date'],
 			attributes: ['id', 'title', 'description', 'date', 'location'],
 			limit: 10,
