@@ -18,6 +18,7 @@ class MeetupController {
 				'description',
 				'date',
 				'banner_id',
+				'users_id',
 				'location',
 				'provider_id',
 			],
@@ -28,6 +29,11 @@ class MeetupController {
 					model: File,
 					as: 'avatar',
 					attributes: ['id', 'path', 'url'],
+				},
+				{
+					model: User,
+					as: 'users',
+					attributes: ['name', 'email'],
 				},
 			],
 		});
