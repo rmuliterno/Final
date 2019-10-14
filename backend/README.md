@@ -1,6 +1,6 @@
-# The Meetapp
+# The Backend
 
-This is a meetup organization app where users can subscribe to upcoming meetups.
+This is the where the magic happens.
 
 ## How to run
 
@@ -16,5 +16,11 @@ on the mailtrap section.
 
 Run the server with `yarn dev`. The default port for the server is `3434`.
 
+There's an `Insomnia.json` file on the root of this directory that contains all of the routes for
+testing. Just import it on Insomnia and you're good to go.
 
-Everything should be working on the backend by now.
+Everything should be working on the backend by now. To be honest there's not a lot that can go wrong here.
+
+#### Notes to self
+
+Add more schema validations, queue for sent emails and more documentation on the code.
