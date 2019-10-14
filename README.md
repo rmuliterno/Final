@@ -1,20 +1,26 @@
 # The Meetapp
 
-This is a meetup organization app where users can subscribe to upcoming meetups.
+This is a meetup organization app where users can create and subscribe to meetups. Sadly the mobile version is only available for android
+since I don't have the resources required to develop on IOS.
 
-## How to run
+## Introduction
 
-First of all, install all of the required modules for this app by running `npm install` or, simply, `yarn`.
+Hello and welcome to my app. This is the final challenge of the GoStack8 bootcamp. As this is my first fullstack app there probably is a lot of room for improvement so I'll try to keep this updated as I learn more and more about programming.
 
-About the database, this app has only been tested on postgres so I highly suggest that for running this app. Create a database named
-meetapp or change the config on the `.env` file to one of your liking.
-Input your port, host and password on the `.env` file then run `yarn sequelize db:migrate`, check if the tables and their relations were
-created on your database.
+### How do I run this?
 
-I use MailTrap to test the email function of the server, modify the `.env` file to match your user, pass, port and host
-on the mailtrap section.
+Just follow the tutorials on these respective directories:
 
-Run the server with `yarn dev`. The default port for the server is `3434`.
+  1 - backend <br />
+  2 - web <br />
+  3 - mobile <br />
+  
+#### Notes
 
+I'll be working on a mock API so that you can run the front-end of the web without necessarily running the server.<br />
+Integration of tests are on the way! Due to time constraints they weren't added earlier.<br />
+If, by some divine intervention, this app actually runs on your machine then enjoy and please try to test every function if you can. I had
+fun developing this app and I learned a lot about so many things. <br />
+Lastly, `it works on my machine`.
 
-Everything should be working on the backend by now.
+Cheers!
