@@ -15,6 +15,7 @@ class User extends Model {
 				sequelize,
 			}
 		);
+		// Encrypt the password before storing it to the database
 		this.addHook('beforeSave', async user => {
 			if (user.password) {
 				user.password_hash = await bcrypt.hash(user.password, 8);

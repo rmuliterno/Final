@@ -26,6 +26,7 @@ class Meetup extends Model {
 	}
 
 	static associate(models) {
+		// Creating the association with other tables
 		this.belongsTo(models.User, {
 			foreignKey: 'provider_id',
 			as: 'provider',

@@ -15,8 +15,10 @@ class MeetupController {
 	async index(req, res) {
 		const { page, date } = req.query;
 
+		// Specifying the query to be used later, this will be used to catch the meetups that were not canceled
 		const where = { canceled_at: null };
 
+		// If we specify a date on the query it will only catch meetups from said date
 		if (date) {
 			const searchDate = parseISO(date);
 
@@ -25,7 +27,7 @@ class MeetupController {
 			};
 		}
 
-		//  Listing every non cancelled Meetup
+		//  Listing every meetup with those queries defined earlier
 		const meetups = await Meetup.findAll({
 			where,
 			order: ['date'],
@@ -71,6 +73,7 @@ class MeetupController {
 			banner_id,
 		} = req.body;
 
+		// Some validations specified by the 'client'
 		const checkIsProvider = await User.findOne({
 			where: { id: provider_id, provider: true },
 		});
@@ -80,7 +83,8 @@ class MeetupController {
 				error: 'You can only create meetups with a provider account',
 			});
 		}
-
+	
+		
 		const hourStart = startOfHour(parseISO(date));
 
 		if (isBefore(hourStart, new Date())) {
@@ -124,6 +128,7 @@ class MeetupController {
 
 		const meetup = await Meetup.findByPk(req.params.id);
 
+		// Not allowing the user to edit meetups that have already happened
 		const hourStart = startOfHour(meetup.date);
 
 		if (isBefore(hourStart, new Date())) {

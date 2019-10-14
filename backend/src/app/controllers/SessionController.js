@@ -4,6 +4,8 @@ import * as Yup from 'yup';
 import authConfig from '../../config/auth';
 import User from '../models/User';
 
+// Basic session create using JWT 
+
 class SessionController {
 	async store(req, res) {
 		const schema = Yup.object().shape({

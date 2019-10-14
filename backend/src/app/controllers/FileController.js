@@ -1,6 +1,8 @@
 import File from '../models/File';
 
 class FileController {
+	// Here the file is stored in the database 
+	// For simplicity, originalname and filename are stored on the name and path variables
 	async store(req, res) {
 		const { originalname: name, filename: path } = req.file;
 

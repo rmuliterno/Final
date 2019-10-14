@@ -6,6 +6,7 @@ import Subscription from '../models/Subscription';
 import Mail from '../../lib/Mail';
 
 class SubscriptionController {
+	// Listing every meetup that the user has subscribed to and that have not happened yet
 	async index(req, res) {
 		const user_id = req.userId;
 
@@ -19,6 +20,8 @@ class SubscriptionController {
 	async store(req, res) {
 		const meetup_id = req.params.id;
 		const user_id = req.userId;
+
+		// Validations
 
 		const checkExists = await Meetup.findOne({ where: { id: meetup_id } });
 		if (!checkExists) {
@@ -78,6 +81,10 @@ class SubscriptionController {
 		});
 
 		const { name, email } = await User.findByPk(provider_id);
+
+		// First we got every information we needed to send the email
+		// Now we use nodemailer to actually send an email with that information
+		// The styling is declared on a template file
 
 		await Mail.sendMail({
 			to: `${name} <${email}>`,

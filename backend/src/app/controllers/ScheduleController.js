@@ -6,6 +6,7 @@ import User from '../models/User';
 
 class ScheduleController {
 	async index(req, res) {
+		// Here its listing every meetup that the provider has created
 		const checkProvider = await User.findOne({
 			where: {
 				id: req.userId,
