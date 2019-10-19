@@ -33,7 +33,7 @@ class MeetupController {
 			order: ['date'],
 			attributes: ['id', 'title', 'description', 'date', 'location'],
 			limit: 10,
-			offset: (page - 1) * 10,
+			offset: page ? (page - 1) * 10 : 0,
 			include: [
 				{
 					model: File,
@@ -83,8 +83,7 @@ class MeetupController {
 				error: 'You can only create meetups with a provider account',
 			});
 		}
-	
-		
+
 		const hourStart = startOfHour(parseISO(date));
 
 		if (isBefore(hourStart, new Date())) {
