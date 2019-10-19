@@ -1,12 +1,10 @@
-import { startOfDay, endOfDay, parseISO } from 'date-fns';
-import { Op } from 'sequelize';
-
 import Meetup from '../models/Meetup';
 import User from '../models/User';
+import File from '../models/File';
 
 class ScheduleController {
 	async index(req, res) {
-		// Here its listing every meetup that the provider has created
+		// Here its listing every non canceled meetup that the provider has created
 		const checkProvider = await User.findOne({
 			where: {
 				id: req.userId,
@@ -18,24 +16,39 @@ class ScheduleController {
 			return res.status(401).json({ error: 'User is not a provider' });
 		}
 
-		const { date } = req.query;
-		const parsedDate = parseISO(date);
-
 		const meetups = await Meetup.findAll({
 			where: {
 				provider_id: req.userId,
 				canceled_at: null,
-				date: {
-					[Op.between]: [
-						startOfDay(parsedDate),
-						endOfDay(parsedDate),
-					],
-				},
 			},
 			order: ['date'],
 		});
 
 		return res.json(meetups);
+	}
+
+	async show(req, res) {
+		const { id } = req.params;
+		const provider_id = req.userId;
+
+		try {
+			const meetup = await Meetup.findOne({
+				where: { id, provider_id },
+				include: [
+					{
+						model: File,
+						as: 'banner',
+						attributes: ['id', 'path', 'url'],
+					},
+				],
+			});
+
+			return res.json(meetup);
+		} catch (err) {
+			return res
+				.status(400)
+				.json({ error: "You are not this meetup's provider" });
+		}
 	}
 }
 
