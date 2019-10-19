@@ -4,6 +4,8 @@ import { Form, Input } from '@rocketseat/unform';
 
 import { updateProfileRequest } from '~/store/modules/user/actions';
 
+import BannerInput from './BannerInput';
+
 import { Container } from './styles';
 
 export default function Profile() {
@@ -17,6 +19,7 @@ export default function Profile() {
 	return (
 		<Container>
 			<Form initialData={profile} onSubmit={handleSubmit}>
+				<BannerInput name="banner_id" />
 				<Input name="title" placeholder="Título do Meetup" />
 				<Input
 					multiline
