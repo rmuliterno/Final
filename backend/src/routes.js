@@ -21,8 +21,8 @@ routes.use(authMiddleware);
 
 routes.put('/users', UserController.update);
 
-routes.get('/meetups', MeetupController.index);
 routes.post('/meetups', MeetupController.store);
+routes.get('/meetup', MeetupController.index);
 routes.put('/meetups/:id', MeetupController.update);
 routes.delete('/meetups/:id', MeetupController.delete);
 
@@ -30,6 +30,7 @@ routes.get('/subscriptions', SubscriptionController.index);
 routes.post('/subscriptions/:id', SubscriptionController.store);
 
 routes.get('/schedule', ScheduleController.index);
+routes.get('/schedule/:id', ScheduleController.show);
 
 routes.post('/files', upload.single('file'), FileController.store);
 

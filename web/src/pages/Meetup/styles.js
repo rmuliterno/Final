@@ -15,6 +15,7 @@ export const Container = styled.div`
 			border: 0;
 			border-radius: 6px;
 			height: 44px;
+			width: 100%;
 			padding: 0 15px;
 			color: #fff;
 			margin: 0 0 10px;
@@ -50,7 +51,7 @@ export const Container = styled.div`
 			font-weight: bold;
 		}
 
-		button {
+		.save {
 			margin: 5px auto;
 			height: 44px;
 			width: 162px;

@@ -1,24 +1,20 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
 import { Form, Input } from '@rocketseat/unform';
 
-import { updateProfileRequest } from '~/store/modules/user/actions';
-
 import BannerInput from './BannerInput';
+import DateInput from './DateInput';
 
 import { Container } from './styles';
 
 export default function Profile() {
-	const dispatch = useDispatch();
-	const profile = useSelector(state => state.user.profile);
-
 	function handleSubmit(data) {
-		dispatch(updateProfileRequest(data));
+		// dispatch(updateProfileRequest(data));
 	}
 
 	return (
 		<Container>
-			<Form initialData={profile} onSubmit={handleSubmit}>
+			<Form onSubmit={handleSubmit}>
 				<BannerInput name="banner_id" />
 				<Input name="title" placeholder="Título do Meetup" />
 				<Input
@@ -26,10 +22,12 @@ export default function Profile() {
 					name="description"
 					placeholder="Descrição completa"
 				/>
-				<Input name="date" placeholder="Data do Meetup" />
+				<DateInput className="date" name="date" autocomplete="off" />
 				<Input name="location" placeholder="Localização" />
 
-				<button type="submit">Salvar Meetup</button>
+				<button className="save" type="submit">
+					Salvar Meetup
+				</button>
 			</Form>
 		</Container>
 	);

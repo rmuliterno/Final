@@ -1,6 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useField } from '@rocketseat/unform';
+import { MdCameraAlt } from 'react-icons/md';
 import api from '~/services/api';
+
+import bitmap from '~/assets/bitmap.svg';
 
 import { Container } from './styles';
 
@@ -38,7 +41,17 @@ export default function BannerInput() {
 	return (
 		<Container>
 			<label htmlFor="banner">
-				<img src={preview} alt="Banner" />
+				<img src={preview || bitmap} alt="Banner" />
+				<div className="centered-text">
+					<div>
+						<MdCameraAlt
+							className="icon-camera"
+							size={54}
+							color="#fff"
+						/>
+					</div>
+					<strong>Selecionar imagem</strong>
+				</div>
 				<input
 					type="file"
 					id="banner"
