@@ -13,57 +13,64 @@ import {
 
 export function* create({ payload }) {
 	try {
-		const { email, password } = payload;
+		const {
+			title,
+			description,
+			banner_id,
+			date,
+			location,
+			provider_id,
+		} = payload;
 
 		const response = yield call(api.post, 'sessions', {
-			email,
-			password,
+			title,
+			description,
+			banner_id,
+			date,
+			location,
+			provider_id,
 		});
 
-		const { token, user } = response.data;
+		const { meetup } = response.data;
 
-		if (!user.provider) {
-			toast.error('Usuário não é prestador');
-			return;
-		}
-
-		api.defaults.headers.Authorization = `Bearer ${token}`;
-
-		yield put(signInSuccess(token, user));
+		yield put(createMeetupSuccess(meetup));
 
 		history.push('/dashboard');
 	} catch (err) {
 		toast.error('Falha na autenticação');
-		yield put(signFailure());
+		yield put(createMeetupFailure());
 	}
 }
 
 export function* update({ payload }) {
 	try {
-		const { name, email, password } = payload;
+		const {
+			title,
+			description,
+			banner_id,
+			date,
+			location,
+			provider_id,
+		} = payload;
 
-		yield call(api.post, 'users', {
-			name,
-			email,
-			password,
-			provider: true,
+		const response = yield call(api.post, 'users', {
+			title,
+			description,
+			banner_id,
+			date,
+			location,
+			provider_id,
 		});
+
+		const { meetup } = response.data;
+
+		yield put(updateMeetupSuccess(meetup));
 
 		history.push('/');
 	} catch (err) {
 		toast.error('Falha no cadastro');
 
-		yield put(signFailure());
-	}
-}
-
-export function setToken({ payload }) {
-	if (!payload) return;
-
-	const { token } = payload.auth;
-
-	if (token) {
-		api.defaults.headers.Authorization = `Bearer ${token}`;
+		yield put(updateMeetupFailure());
 	}
 }
 
