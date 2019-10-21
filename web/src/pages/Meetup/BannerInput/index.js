@@ -15,15 +15,15 @@ export default function BannerInput() {
 
 	const ref = useRef();
 
-	useEffect(() => {
-		if (ref.current) {
-			registerField({
-				name: 'banner_id',
-				ref: ref.current,
-				path: 'dataset.file',
-			});
-		}
-	}, [ref, registerField]);
+	// useEffect(() => {
+	// 	if (ref.current) {
+	// 		registerField({
+	// 			name: 'banner_id',
+	// 			ref: ref.current,
+	// 			path: 'dataset.file',
+	// 		});
+	// 	}
+	// }, [ref, registerField]);
 
 	async function handleChange(e) {
 		const data = new FormData();
@@ -42,23 +42,25 @@ export default function BannerInput() {
 		<Container>
 			<label htmlFor="banner">
 				<img src={preview || bitmap} alt="Banner" />
-				<div className="centered-text">
-					<div>
-						<MdCameraAlt
-							className="icon-camera"
-							size={54}
-							color="#fff"
-						/>
+				{!preview && (
+					<div className="centered-text">
+						<div>
+							<MdCameraAlt
+								className="icon-camera"
+								size={54}
+								color="#fff"
+							/>
+						</div>
+						<strong>Selecionar imagem</strong>
 					</div>
-					<strong>Selecionar imagem</strong>
-				</div>
+				)}
 				<input
 					type="file"
 					id="banner"
 					accept="image/*"
 					data-file={file}
 					onChange={handleChange}
-					ref={() => ref}
+					ref={ref}
 				/>
 			</label>
 		</Container>

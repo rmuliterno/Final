@@ -1,9 +1,11 @@
 import React, { useRef, useEffect, useState } from 'react';
 import ReactDatePicker, { registerLocale } from 'react-datepicker';
-
+import pt from 'date-fns/locale/pt-BR';
 import { useField } from '@rocketseat/unform';
 
 import 'react-datepicker/dist/react-datepicker.css';
+
+registerLocale('pt-BR', pt);
 
 export default function DatePicker({ name }) {
 	const ref = useRef(null);
@@ -33,7 +35,7 @@ export default function DatePicker({ name }) {
 				showTimeSelect
 				timeFormat="p"
 				timeCaption="Hora"
-				dateFormat="dd/MM/yyyy h:mm aa"
+				dateFormat="dd/MM/yyyy HH:mm"
 				timeIntervals={60}
 			/>
 			{error && <span>{error}</span>}
