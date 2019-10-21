@@ -43,11 +43,17 @@ class ScheduleController {
 				],
 			});
 
+			if (!meetup) {
+				return res
+					.status(400)
+					.json({ error: "You are not this meetup's providers" });
+			}
+
 			return res.json(meetup);
 		} catch (err) {
 			return res
 				.status(400)
-				.json({ error: "You are not this meetup's provider" });
+				.json({ error: 'Could not locate this meetup' });
 		}
 	}
 }
