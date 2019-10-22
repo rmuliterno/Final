@@ -1,6 +1,8 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 
+import Test from '~/Test';
+
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
@@ -16,9 +18,5 @@ const styles = StyleSheet.create({
 });
 
 export default function App() {
-	return (
-		<View style={styles.container}>
-			<Text style={styles.welcome}>Welcomeaaaa to React Native</Text>
-		</View>
-	);
+	return <Test />;
 }
