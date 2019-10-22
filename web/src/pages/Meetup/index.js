@@ -14,6 +14,14 @@ import DateInput from './DateInput';
 
 import { Container } from './styles';
 
+const schema = Yup.object().shape({
+	title: Yup.string().required('O título do meetup é obrigatório'),
+	location: Yup.string().required('A senha é obrigatória'),
+	date: Yup.date().required('A data é obrigatória'),
+	description: Yup.string().required('A localização é obrigatória'),
+	banner_id: Yup.number().required('Você precisa anexar um banner'),
+});
+
 export default function Meetup() {
 	const dispatch = useDispatch();
 	const [initial, setInitial] = useState();
@@ -67,7 +75,11 @@ export default function Meetup() {
 
 	return (
 		<Container>
-			<Form onSubmit={handleSubmit} initialData={initial || ''}>
+			<Form
+				schema={schema}
+				onSubmit={handleSubmit}
+				initialData={initial || ''}
+			>
 				<BannerInput name="banner_id" />
 				<Input name="title" placeholder="Título do Meetup" />
 				<Input
