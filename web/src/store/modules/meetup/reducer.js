@@ -5,26 +5,39 @@ const INITIAL_STATE = {
 	banner: null,
 };
 
-export default function auth(state = INITIAL_STATE, action) {
+export default function meetup(state = INITIAL_STATE, action) {
 	return produce(state, draft => {
 		switch (action.type) {
-			case '@auth/SIGN_IN_REQUEST': {
+			case '@meetup/CREATE_MEETUP_REQUEST': {
 				draft.loading = true;
 				break;
 			}
-			case '@auth/SIGN_IN_SUCCESS': {
-				draft.token = action.payload.token;
-				draft.signed = true;
+			case '@meetup/CREATE_MEETUP_SUCCESS': {
+				draft.meetup = action.payload.meetup;
+				draft.banner = action.payload.meetup.banner;
 				draft.loading = false;
 				break;
 			}
-			case '@auth/SIGN_FAILURE': {
+			case '@meetup/CREATE_MEETUP_FAILURE': {
+				draft.meetup = null;
+				draft.banner = null;
 				draft.loading = false;
 				break;
 			}
-			case '@auth/SIGN_OUT': {
-				draft.token = null;
-				draft.signed = false;
+			case '@meetup/UPDATE_MEETUP_REQUEST': {
+				draft.loading = true;
+				break;
+			}
+			case '@meetup/UPDATE_MEETUP_SUCCESS': {
+				draft.meetup = action.payload.meetup;
+				draft.banner = action.payload.meetup.banner;
+				draft.loading = false;
+				break;
+			}
+			case '@meetup/UPDATE_MEETUP_FAILURE': {
+				draft.meetup = null;
+				draft.banner = null;
+				draft.loading = false;
 				break;
 			}
 			default:

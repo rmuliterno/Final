@@ -14,30 +14,30 @@ import {
 export function* create({ payload }) {
 	try {
 		const {
+			provider_id,
+			banner_id,
 			title,
 			description,
-			banner_id,
 			date,
 			location,
-			provider_id,
 		} = payload;
 
-		const response = yield call(api.post, 'sessions', {
+		const response = yield call(api.post, 'meetups', {
+			provider_id,
+			banner_id,
 			title,
 			description,
-			banner_id,
 			date,
 			location,
-			provider_id,
 		});
 
-		const { meetup } = response.data;
+		const meetup = response.data;
 
 		yield put(createMeetupSuccess(meetup));
 
 		history.push('/dashboard');
 	} catch (err) {
-		toast.error('Falha na autenticação');
+		toast.error('Falha na criação do Meetup, verifique os dados');
 		yield put(createMeetupFailure());
 	}
 }
@@ -45,6 +45,7 @@ export function* create({ payload }) {
 export function* update({ payload }) {
 	try {
 		const {
+			id,
 			title,
 			description,
 			banner_id,
@@ -53,7 +54,7 @@ export function* update({ payload }) {
 			provider_id,
 		} = payload;
 
-		const response = yield call(api.post, 'users', {
+		const response = yield call(api.put, `meetups/${id}`, {
 			title,
 			description,
 			banner_id,
@@ -62,13 +63,15 @@ export function* update({ payload }) {
 			provider_id,
 		});
 
-		const { meetup } = response.data;
+		const meetup = response.data;
 
 		yield put(updateMeetupSuccess(meetup));
 
+		toast.success('Meetup atualizada com sucesso');
+
 		history.push('/');
 	} catch (err) {
-		toast.error('Falha no cadastro');
+		toast.error('Falha na Atualização do Meetup, verifique os dados');
 
 		yield put(updateMeetupFailure());
 	}

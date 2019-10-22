@@ -1,14 +1,14 @@
 export function createMeetupRequest(
+	provider_id,
+	banner_id,
 	title,
 	description,
-	banner_id,
 	date,
-	location,
-	provider_id
+	location
 ) {
 	return {
 		type: '@meetup/CREATE_MEETUP_REQUEST',
-		payload: { title, description, banner_id, date, location, provider_id },
+		payload: { provider_id, title, description, banner_id, date, location },
 	};
 }
 
@@ -26,16 +26,25 @@ export function createMeetupFailure() {
 }
 
 export function updateMeetupRequest(
+	id,
+	provider_id,
 	title,
 	description,
 	banner_id,
 	date,
-	location,
-	provider_id
+	location
 ) {
 	return {
 		type: '@meetup/UPDATE_MEETUP_REQUEST',
-		payload: { title, description, banner_id, date, location, provider_id },
+		payload: {
+			id,
+			provider_id,
+			title,
+			description,
+			banner_id,
+			date,
+			location,
+		},
 	};
 }
 

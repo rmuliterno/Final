@@ -26,6 +26,8 @@ export function* signIn({ payload }) {
 
 		yield put(signInSuccess(token, user));
 
+		toast.success('Meetup criada com sucesso!');
+
 		history.push('/dashboard');
 	} catch (err) {
 		toast.error('Falha na autenticação');

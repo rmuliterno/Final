@@ -4,6 +4,7 @@ import { parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 import { format } from 'date-fns-tz';
 import { MdDeleteForever, MdEdit, MdEvent, MdPlace } from 'react-icons/md';
+import { toast } from 'react-toastify';
 import api from '~/services/api';
 import history from '~/services/history';
 
@@ -54,8 +55,9 @@ export default function Dashboard() {
 	}, [meetup.date, meetup_id]);
 
 	async function handleCancel() {
-		console.log('deletando');
 		await api.delete(`meetups/${meetup_id}`);
+
+		toast.success('Meetup deletada com sucesso!');
 
 		history.push('/');
 	}

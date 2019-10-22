@@ -68,9 +68,9 @@ class MeetupController {
 			title,
 			description,
 			location,
-			provider_id,
 			date,
 			banner_id,
+			provider_id,
 		} = req.body;
 
 		// Some validations specified by the 'client'

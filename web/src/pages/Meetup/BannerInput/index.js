@@ -13,17 +13,18 @@ export default function BannerInput() {
 	const [file, setFile] = useState(defaultValue && defaultValue.id);
 	const [preview, setPreview] = useState(defaultValue && defaultValue.url);
 
-	const ref = useRef();
+	const ref = useRef(null);
 
-	// useEffect(() => {
-	// 	if (ref.current) {
-	// 		registerField({
-	// 			name: 'banner_id',
-	// 			ref: ref.current,
-	// 			path: 'dataset.file',
-	// 		});
-	// 	}
-	// }, [ref, registerField]);
+	useEffect(() => {
+		if (ref.current) {
+			registerField({
+				name: 'banner_id',
+				ref: ref.current,
+				path: 'dataset.file',
+			});
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [ref]);
 
 	async function handleChange(e) {
 		const data = new FormData();
@@ -41,6 +42,18 @@ export default function BannerInput() {
 	return (
 		<Container>
 			<label htmlFor="banner">
+				{!preview && (
+					<div className="centered-text">
+						<div>
+							<MdCameraAlt
+								className="icon-camera"
+								size={54}
+								color="#fff"
+							/>
+						</div>
+						<strong>Selecionar imagem</strong>
+					</div>
+				)}
 				<img src={preview || bitmap} alt="Banner" />
 				{!preview && (
 					<div className="centered-text">
