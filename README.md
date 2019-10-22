@@ -5,7 +5,7 @@ since I don't have the resources required to develop on IOS.
 
 ## Introduction
 
-Greetings and salutations dear human, welcome to my app. This is the final challenge of the GoStack8 bootcamp. As this is my first fullstack app there probably is a lot of room for improvement so I'll try to keep this updated as I learn more and more about programming.
+Greetings and salutations dear human, welcome to my app. This is the final challenge of the GoStack8 bootcamp. As this is my first fullstack app, there probably is a lot of room for improvement so I'll try to keep this updated as I learn more and more about programming.
 
 ### How do I run this?
 
