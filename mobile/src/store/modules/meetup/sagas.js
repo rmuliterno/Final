@@ -1,7 +1,6 @@
+import { Alert } from 'react-native';
 import { takeLatest, call, put, all } from 'redux-saga/effects';
-import { toast } from 'react-toastify';
 
-import history from '~/services/history';
 import api from '~/services/api';
 
 import {
@@ -35,9 +34,9 @@ export function* create({ payload }) {
 
 		yield put(createMeetupSuccess(meetup));
 
-		history.push('/dashboard');
+		// history.push('/dashboard');
 	} catch (err) {
-		toast.error('Falha na criação do Meetup, verifique os dados');
+		Alert.alert('Erro', 'Falha na criação do Meetup, verifique os dados');
 		yield put(createMeetupFailure());
 	}
 }
@@ -67,11 +66,14 @@ export function* update({ payload }) {
 
 		yield put(updateMeetupSuccess(meetup));
 
-		toast.success('Meetup atualizada com sucesso');
+		Alert.alert('Sucesso', 'Meetup atualizada com sucesso');
 
-		history.push('/');
+		// history.push('/');
 	} catch (err) {
-		toast.error('Falha na Atualização do Meetup, verifique os dados');
+		Alert.alert(
+			'Erro',
+			'Falha na Atualização do Meetup, verifique os dados',
+		);
 
 		yield put(updateMeetupFailure());
 	}
