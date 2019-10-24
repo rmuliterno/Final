@@ -13,6 +13,6 @@ export default function Meetups() {
 Meetups.navigationOptions = {
 	tabBarLabel: 'Meetups',
 	tabBarIcon: ({ tintColor }) => (
-		<Icon name="format-list" size={20} color={tintColor} />
+		<Icon name="format-list-bulleted" size={20} color={tintColor} />
 	),
 };
