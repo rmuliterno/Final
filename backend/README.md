@@ -1,6 +1,6 @@
 # The Backend
 
-This is the where the magic happens.
+This is where the magic happens.
 
 ## How to run
 
