@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Image, StatusBar } from 'react-native';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Divider } from 'react-native-elements';
 
@@ -20,17 +20,33 @@ import {
 } from './styles';
 
 export default function Profile() {
+	const profile = useSelector(state => state.user.profile);
+
 	const dispatch = useDispatch();
 
-	const [name, setName] = useState('');
-	const [email, setEmail] = useState('');
+	const [name, setName] = useState(profile.name);
+	const [email, setEmail] = useState(profile.email);
 
 	const [oldPassword, setOldPassword] = useState('');
 	const [password, setPassword] = useState('');
 	const [passwordConfirm, setPasswordConfirm] = useState('');
 
-	function handleSubmit(data) {
-		dispatch(updateProfileRequest(data));
+	useEffect(() => {
+		setOldPassword('');
+		setPassword('');
+		setPasswordConfirm('');
+	}, [profile]);
+
+	function handleSubmit() {
+		dispatch(
+			updateProfileRequest({
+				name,
+				email,
+				oldPassword,
+				password,
+				passwordConfirm,
+			}),
+		);
 	}
 
 	StatusBar.setHidden(true, 'none');

@@ -18,7 +18,7 @@ export const Container = styled.View`
 	padding: 0 30px;
 `;
 
-export const Form = styled.View`
+export const Form = styled.KeyboardAvoidingView`
 	align-self: stretch;
 	margin-top: 50px;
 `;
