@@ -8,7 +8,7 @@ import api from '~/services/api';
 import Background from '~/components/Background';
 import Meetup from '~/components/Meetup';
 
-import { Header, Container, Title, List } from './styles';
+import { Header, Container, List } from './styles';
 
 export default function Meetups() {
 	const [meetups, setMeetups] = useState([]);
