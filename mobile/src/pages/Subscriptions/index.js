@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Alert } from 'react-native';
+import { Alert, Image, StatusBar } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
+import logo from '~/assets/logo.png';
 import api from '~/services/api';
 
 import Background from '~/components/Background';
 import Subscription from '~/components/Subscription';
 
-import { Container, Title, List } from './styles';
+import { Header, Container, List } from './styles';
 
 export default function Subscriptions() {
 	const [subscriptions, setSubscriptions] = useState([]);
@@ -26,11 +28,14 @@ export default function Subscriptions() {
 		Alert.alert('Sucesso', 'Você cancelou sua inscrição na meetup!');
 	}
 
+	StatusBar.setHidden(true, 'none');
+
 	return (
 		<Background>
+			<Header>
+				<Image source={logo} />
+			</Header>
 			<Container>
-				<Title>Subscriptions</Title>
-
 				<List
 					data={subscriptions}
 					keyExtractor={item => String(item.id)}
@@ -47,7 +52,7 @@ export default function Subscriptions() {
 }
 
 Subscriptions.navigationOptions = {
-	tabBarLabel: 'Subscriptions',
+	tabBarLabel: 'Inscrições',
 	tabBarIcon: ({ tintColor }) => (
 		<Icon name="local-offer" size={20} color={tintColor} />
 	),

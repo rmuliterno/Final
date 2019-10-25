@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Alert } from 'react-native';
+import { Alert, Image, StatusBar } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+
+import logo from '~/assets/logo.png';
 import api from '~/services/api';
 
 import Background from '~/components/Background';
 import Meetup from '~/components/Meetup';
 
-import { Container, Title, List } from './styles';
+import { Header, Container, Title, List } from './styles';
 
 export default function Meetups() {
 	const [meetups, setMeetups] = useState([]);
@@ -26,11 +28,14 @@ export default function Meetups() {
 		Alert.alert('Sucesso', 'Você se inscreveu na meetup!');
 	}
 
+	StatusBar.setHidden(true, 'none');
+
 	return (
 		<Background>
+			<Header>
+				<Image source={logo} />
+			</Header>
 			<Container>
-				<Title>Meetups</Title>
-
 				<List
 					data={meetups}
 					keyExtractor={item => String(item.id)}

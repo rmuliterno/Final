@@ -3,6 +3,14 @@ import styled from 'styled-components/native';
 import Input from '~/components/Input';
 import Button from '~/components/Button';
 
+export const Header = styled.View`
+	height: 100px;
+	justify-content: center;
+	align-items: center;
+	padding: 0 18px;
+	background: #111;
+`;
+
 export const Container = styled.View`
 	flex: 1;
 	justify-content: center;

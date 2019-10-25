@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import { Image, StatusBar } from 'react-native';
 import { useDispatch } from 'react-redux';
 
 import { Divider } from 'react-native-elements';
@@ -9,7 +10,14 @@ import logo from '~/assets/logo.png';
 import Background from '~/components/Background';
 import { updateProfileRequest } from '~/store/modules/user/actions';
 
-import { Container, Form, FormInput, SubmitButton, Divisor } from './styles';
+import {
+	Header,
+	Container,
+	Form,
+	FormInput,
+	SubmitButton,
+	Divisor,
+} from './styles';
 
 export default function Profile() {
 	const dispatch = useDispatch();
@@ -25,8 +33,13 @@ export default function Profile() {
 		dispatch(updateProfileRequest(data));
 	}
 
+	StatusBar.setHidden(true, 'none');
+
 	return (
 		<Background>
+			<Header>
+				<Image source={logo} />
+			</Header>
 			<Container>
 				<Form>
 					<FormInput
