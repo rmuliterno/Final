@@ -49,6 +49,6 @@ export default function Subscriptions() {
 Subscriptions.navigationOptions = {
 	tabBarLabel: 'Subscriptions',
 	tabBarIcon: ({ tintColor }) => (
-		<Icon name="format-list-bulleted" size={20} color={tintColor} />
+		<Icon name="local-offer" size={20} color={tintColor} />
 	),
 };
