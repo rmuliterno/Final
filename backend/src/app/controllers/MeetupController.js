@@ -16,7 +16,7 @@ class MeetupController {
 		const { page, date } = req.query;
 
 		// Specifying the query to be used later, this will be used to catch the meetups that were not canceled
-		const where = { canceled_at: null, past: false };
+		const where = { canceled_at: null };
 
 		// If we specify a date on the query it will only catch meetups from said date
 		// if (date) {

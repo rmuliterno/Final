@@ -17,7 +17,13 @@ class SubscriptionController {
 				{
 					model: Meetup,
 					as: 'meetup',
-					attributes: ['title', 'location', 'date', 'provider_id'],
+					attributes: [
+						'id',
+						'title',
+						'location',
+						'date',
+						'provider_id',
+					],
 					include: [
 						{
 							model: File,
@@ -118,6 +124,22 @@ class SubscriptionController {
 		});
 
 		return res.json(subscription);
+	}
+
+	async delete(req, res) {
+		const subscription = await Subscription.findByPk(req.params.id);
+
+		const checkUser = subscription.user_id === req.userId;
+
+		if (!checkUser) {
+			return res.status(401).json({
+				error: "Only this meetups's subscriber can unsubscribe",
+			});
+		}
+
+		await subscription.destroy();
+
+		return res.json({ message: 'Subscription deleted succesfully' });
 	}
 }
 
