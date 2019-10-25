@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Alert, Image, StatusBar } from 'react-native';
+import { Alert, Image, StatusBar, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import logo from '~/assets/logo.png';
@@ -8,10 +8,11 @@ import api from '~/services/api';
 import Background from '~/components/Background';
 import Meetup from '~/components/Meetup';
 
-import { Header, Container, List } from './styles';
+import { Header, Container, List, Dia, Top } from './styles';
 
 export default function Meetups() {
 	const [meetups, setMeetups] = useState([]);
+	const [date, setDate] = useState(new Date());
 
 	useEffect(() => {
 		async function loadMeetups() {
@@ -36,6 +37,15 @@ export default function Meetups() {
 				<Image source={logo} />
 			</Header>
 			<Container>
+				<Top>
+					<TouchableOpacity>
+						<Icon name="chevron-left" size={40} color="#fff" />
+					</TouchableOpacity>
+					<Dia>31 de Maio</Dia>
+					<TouchableOpacity>
+						<Icon name="chevron-right" size={40} color="#fff" />
+					</TouchableOpacity>
+				</Top>
 				<List
 					data={meetups}
 					keyExtractor={item => String(item.id)}

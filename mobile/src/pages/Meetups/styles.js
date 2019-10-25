@@ -12,6 +12,21 @@ export const Header = styled.View`
 	background: #111;
 `;
 
+export const Top = styled.View`
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin-top: 24px;
+`;
+
+export const Dia = styled.Text`
+	font-size: 20px;
+	color: #fff;
+	font-weight: bold;
+	align-self: center;
+`;
+
 export const Title = styled.Text`
 	font-size: 20px;
 	color: #fff;
