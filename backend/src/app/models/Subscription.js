@@ -11,6 +11,7 @@ class Subscription extends Model {
 
 		return this;
 	}
+
 	// The subscription table has the user that created it and the meetup that its related to
 	static associate(models) {
 		this.belongsTo(models.User, {

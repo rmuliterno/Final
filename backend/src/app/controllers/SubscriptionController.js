@@ -2,6 +2,7 @@ import * as Yup from 'yup';
 import User from '../models/User';
 import Meetup from '../models/Meetup';
 import Subscription from '../models/Subscription';
+import File from '../models/File';
 
 import Mail from '../../lib/Mail';
 
@@ -11,7 +12,26 @@ class SubscriptionController {
 		const user_id = req.userId;
 
 		const meetups = await Subscription.findAll({
-			where: { user_id, past: false },
+			where: { user_id },
+			include: [
+				{
+					model: Meetup,
+					as: 'meetup',
+					attributes: ['title', 'location', 'date', 'provider_id'],
+					include: [
+						{
+							model: File,
+							as: 'banner',
+							attributes: ['id', 'path', 'url'],
+						},
+						{
+							model: User,
+							as: 'provider',
+							attributes: ['id', 'name'],
+						},
+					],
+				},
+			],
 		});
 
 		return res.json(meetups);

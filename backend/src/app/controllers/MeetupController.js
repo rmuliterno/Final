@@ -16,16 +16,16 @@ class MeetupController {
 		const { page, date } = req.query;
 
 		// Specifying the query to be used later, this will be used to catch the meetups that were not canceled
-		const where = { canceled_at: null };
+		const where = { canceled_at: null, past: false };
 
 		// If we specify a date on the query it will only catch meetups from said date
-		if (date) {
-			const searchDate = parseISO(date);
+		// if (date) {
+		// 	const searchDate = parseISO(date);
 
-			where.date = {
-				[Op.between]: [startOfDay(searchDate), endOfDay(searchDate)],
-			};
-		}
+		// 	where.date = {
+		// 		[Op.between]: [startOfDay(searchDate), endOfDay(searchDate)],
+		// 	};
+		// }
 
 		//  Listing every meetup with those queries defined earlier
 		const meetups = await Meetup.findAll({
