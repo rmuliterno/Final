@@ -32,6 +32,12 @@ export const SubmitButton = styled(Button)`
 	margin-bottom: 5px;
 `;
 
+export const LogoutButton = styled(Button)`
+	margin-top: 5px;
+	margin-bottom: 5px;
+	background: #d44059;
+`;
+
 export const Divisor = styled.View`
 	margin-bottom: 10px;
 `;

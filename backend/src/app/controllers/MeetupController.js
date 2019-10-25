@@ -19,13 +19,11 @@ class MeetupController {
 		const where = { canceled_at: null };
 
 		// If we specify a date on the query it will only catch meetups from said date
-		// if (date) {
-		// 	const searchDate = parseISO(date);
+		const searchDate = parseISO(date);
 
-		// 	where.date = {
-		// 		[Op.between]: [startOfDay(searchDate), endOfDay(searchDate)],
-		// 	};
-		// }
+		where.date = {
+			[Op.between]: [startOfDay(searchDate), endOfDay(searchDate)],
+		};
 
 		//  Listing every meetup with those queries defined earlier
 		const meetups = await Meetup.findAll({

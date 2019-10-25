@@ -9,6 +9,7 @@ import logo from '~/assets/logo.png';
 
 import Background from '~/components/Background';
 import { updateProfileRequest } from '~/store/modules/user/actions';
+import { signOut } from '~/store/modules/auth/actions';
 
 import {
 	Header,
@@ -16,6 +17,7 @@ import {
 	Form,
 	FormInput,
 	SubmitButton,
+	LogoutButton,
 	Divisor,
 } from './styles';
 
@@ -47,6 +49,10 @@ export default function Profile() {
 				passwordConfirm,
 			}),
 		);
+	}
+
+	function handleLogout() {
+		dispatch(signOut());
 	}
 
 	StatusBar.setHidden(true, 'none');
@@ -111,9 +117,9 @@ export default function Profile() {
 						Salvar Perfil
 					</SubmitButton>
 
-					<SubmitButton className="logout" onPress={handleSubmit}>
+					<LogoutButton className="logout" onPress={handleLogout}>
 						Sair do Meetapp
-					</SubmitButton>
+					</LogoutButton>
 				</Form>
 			</Container>
 		</Background>
