@@ -23,4 +23,21 @@ If, by some divine intervention, this app actually runs on your machine then enj
 fun developing this app and I learned a lot about so many things. <br />
 Lastly, `it works on my machine`.
 
+#### TODO
+
+.env file e colocar no git.ignore
+Rename insomnia file
+Youch com express async errors
+Apagar conteúdo da pasta uploads
+Dev debug
+Me elogiar pela descrição do repo
+Email assincrono com redis e bee queue
+Adicionar o sentry
+Prop type and schema validation
+Sugestão de docker *docker file*
+Melhorar template de e-mail
+Apagar código comentado
+Exception handling
+
+
 Cheers!
