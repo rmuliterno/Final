@@ -20,7 +20,7 @@ import {
 	Provider,
 } from './styles';
 
-export default function Meetup({ data, onSubscribe }) {
+export default function Subscription({ data, onCancel }) {
 	function dateFormat(date) {
 		const dateFormatted = format(
 			parseISO(date),
@@ -38,32 +38,30 @@ export default function Meetup({ data, onSubscribe }) {
 		<Container>
 			<Banner
 				source={{
-					uri: data.banner.url
-						? data.banner.url
-						: `https://api.adorable.io/avatar/400/${data.provider.name}.png`,
+					uri: data.meetup.banner.url
+						? data.meetup.banner.url
+						: `https://api.adorable.io/avatar/400/${data.meetup.provider.name}.png`,
 				}}
 			/>
 
 			<Info>
 				<View>
-					<Title>{data.title}</Title>
+					<Title>{data.meetup.title}</Title>
 				</View>
 				<Data>
 					<Icon name="event" size={20} color="#333" />
-					<Date>{dateFormat(data.date)}</Date>
+					<Date>{dateFormat(data.meetup.date)}</Date>
 				</Data>
 				<Data>
 					<Icon name="place" size={20} color="#333" />
-					<Location>{data.location}</Location>
+					<Location>{data.meetup.location}</Location>
 				</Data>
 				<Data>
 					<Icon name="person" size={20} color="#333" />
-					<Provider>{data.provider.name}</Provider>
+					<Provider>{data.meetup.provider.name}</Provider>
 				</Data>
 
-				<Button disabled onPress={onSubscribe}>
-					Realizar inscrição
-				</Button>
+				<Button onPress={onCancel}>Cancelar inscrição</Button>
 			</Info>
 		</Container>
 	);

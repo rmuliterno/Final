@@ -4,9 +4,9 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 
-import Dashboard from './pages/Dashboard';
-import Profile from './pages/Profile';
 import Meetups from './pages/Meetups';
+import Subscriptions from './pages/Subscriptions';
+import Profile from './pages/Profile';
 
 export default (isSigned = false) =>
 	createAppContainer(
@@ -19,7 +19,7 @@ export default (isSigned = false) =>
 				App: createBottomTabNavigator(
 					{
 						Meetups,
-						Dashboard,
+						Subscriptions,
 						Profile,
 					},
 					{

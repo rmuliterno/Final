@@ -4,39 +4,39 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import api from '~/services/api';
 
 import Background from '~/components/Background';
-import Meetup from '~/components/Meetup';
+import Subscription from '~/components/Subscription';
 
 import { Container, Title, List } from './styles';
 
-export default function Meetups() {
-	const [meetups, setMeetups] = useState([]);
+export default function Subscriptions() {
+	const [subscriptions, setSubscriptions] = useState([]);
 
 	useEffect(() => {
-		async function loadMeetups() {
-			const response = await api.get('meetup');
+		async function loadSubscriptions() {
+			const response = await api.get('subscriptions');
 
-			setMeetups(response.data);
+			setSubscriptions(response.data);
 		}
-		loadMeetups();
+		loadSubscriptions();
 	}, []);
 
-	async function handleSubscribe(id) {
-		await api.post(`subscriptions/${id}`);
+	async function handleCancel(id) {
+		await api.delete(`subscriptions/${id}`);
 
-		Alert.alert('Sucesso', 'Você se inscreveu na meetup!');
+		Alert.alert('Sucesso', 'Você cancelou sua inscrição na meetup!');
 	}
 
 	return (
 		<Background>
 			<Container>
-				<Title>Meetups</Title>
+				<Title>Subscriptions</Title>
 
 				<List
-					data={meetups}
+					data={subscriptions}
 					keyExtractor={item => String(item.id)}
 					renderItem={({ item }) => (
-						<Meetup
-							onSubscribe={() => handleSubscribe(item.id)}
+						<Subscription
+							onCancel={() => handleCancel(item.id)}
 							data={item}
 						/>
 					)}
@@ -46,8 +46,8 @@ export default function Meetups() {
 	);
 }
 
-Meetups.navigationOptions = {
-	tabBarLabel: 'Meetups',
+Subscriptions.navigationOptions = {
+	tabBarLabel: 'Subscriptions',
 	tabBarIcon: ({ tintColor }) => (
 		<Icon name="format-list-bulleted" size={20} color={tintColor} />
 	),
