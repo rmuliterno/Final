@@ -27,18 +27,11 @@ Lastly, `it works on my machine`.
 
 Fix nos subscriptions após excluir <br />
 .env file e colocar no git.ignore<br />
-Rename insomnia file<br />
-Youch com express async errors<br />
 Apagar conteúdo da pasta uploads<br />
-Dev debug<br />
-Me elogiar pela descrição do repo<br />
-Email assincrono com redis e bee queue<br />
-Adicionar o sentry<br />
 Prop type and schema validation<br />
 Sugestão de docker *docker file*<br />
 Melhorar template de e-mail<br />
 Apagar código comentado<br />
-Exception handling<br />
 
 
 Cheers!
