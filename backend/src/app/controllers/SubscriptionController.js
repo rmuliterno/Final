@@ -115,16 +115,6 @@ class SubscriptionController {
 		// Now we use nodemailer to actually send an email with that information
 		// The styling is declared on a template file
 
-		// Mail.sendMail({
-		// 	to: `${name} <${email}>`,
-		// 	subject: 'New subscription!',
-		// 	template: 'subscription',
-		// 	context: {
-		// 		provider: name,
-		// 		meetup: title,
-		// 	},
-		// });
-
 		await Queue.add(SubscriptionMail.key, {
 			name,
 			title,
@@ -135,7 +125,7 @@ class SubscriptionController {
 	}
 
 	async delete(req, res) {
-		const subscription = await Subscription.findByPk(req.params.id);
+		const subscription = await Subscription.finddByPk(req.params.id);
 
 		const checkUser = subscription.user_id === req.userId;
 
