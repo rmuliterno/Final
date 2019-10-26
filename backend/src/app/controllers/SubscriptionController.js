@@ -1,4 +1,3 @@
-import * as Yup from 'yup';
 import User from '../models/User';
 import Meetup from '../models/Meetup';
 import Subscription from '../models/Subscription';
