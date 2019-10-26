@@ -8,9 +8,7 @@ class SubscriptionMail {
 	async handle({ data }) {
 		const { name, email, title } = data;
 
-		console.log('A fila executou');
-
-		await Mail.sendMail({
+		await Mail.senddMail({
 			to: `${name} <${email}>`,
 			subject: 'New subscription!',
 			template: 'subscription',
