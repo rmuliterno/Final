@@ -4,8 +4,6 @@ import Meetup from '../models/Meetup';
 import Subscription from '../models/Subscription';
 import File from '../models/File';
 
-import Mail from '../../lib/Mail';
-
 import SubscriptionMail from '../jobs/SubscriptionMail';
 import Queue from '../../lib/Queue';
 
@@ -125,7 +123,7 @@ class SubscriptionController {
 	}
 
 	async delete(req, res) {
-		const subscription = await Subscription.finddByPk(req.params.id);
+		const subscription = await Subscription.findByPk(req.params.id);
 
 		const checkUser = subscription.user_id === req.userId;
 
