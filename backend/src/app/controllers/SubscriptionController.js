@@ -6,6 +6,9 @@ import File from '../models/File';
 
 import Mail from '../../lib/Mail';
 
+import SubscriptionMail from '../jobs/SubscriptionMail';
+import Queue from '../../lib/Queue';
+
 class SubscriptionController {
 	// Listing every meetup that the user has subscribed to and that have not happened yet
 	async index(req, res) {
@@ -112,15 +115,20 @@ class SubscriptionController {
 		// Now we use nodemailer to actually send an email with that information
 		// The styling is declared on a template file
 
-		await Mail.sendMail({
-			to: `${name} <${email}>`,
-			subject: 'New subscription!',
-			template: 'subscription',
-			context: {
-				provider: name,
-				meetup: title,
-				// date: format(),
-			},
+		// Mail.sendMail({
+		// 	to: `${name} <${email}>`,
+		// 	subject: 'New subscription!',
+		// 	template: 'subscription',
+		// 	context: {
+		// 		provider: name,
+		// 		meetup: title,
+		// 	},
+		// });
+
+		await Queue.add(SubscriptionMail.key, {
+			name,
+			title,
+			email,
 		});
 
 		return res.json(subscription);
