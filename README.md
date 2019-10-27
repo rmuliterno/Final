@@ -26,12 +26,9 @@ Lastly, `it works on my machine`.
 #### TODO
 
 Fix nos subscriptions após excluir <br />
-.env file e colocar no git.ignore<br />
-Apagar conteúdo da pasta uploads<br />
 Prop type and schema validation<br />
 Sugestão de docker *docker file*<br />
-Melhorar template de e-mail<br />
-Apagar código comentado<br />
+Melhorar/Adicionar README no projeto inteiro<br />
 
 
 Cheers!
