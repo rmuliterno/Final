@@ -58,8 +58,9 @@ export const Schedule = styled.div`
 		font-weight: 400;
 	}
 
-	.date {
-		/* line-height: 62px; */
+	div {
+		display: flex;
+		align-items: center;
 	}
 
 	.icon-right {

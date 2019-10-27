@@ -20,14 +20,17 @@ export const Meetup = styled.div`
 `;
 
 export const Info = styled.div`
+	display: flex;
+	align-items: center;
+
 	strong {
 		color: #fff;
-		opacity: 0.6;
-		font-size: 16px;
+		opacity: 0.8;
+		font-size: 18px;
 		font-weight: 400px;
 		line-height: 21px;
 		margin-left: 8px;
-		margin-right: 18px;
+		margin-right: 24px;
 	}
 `;
 
@@ -53,8 +56,14 @@ export const Top = styled.div`
 		border-radius: 6px;
 		font-size: 16px;
 
+		div {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
 		strong {
-			font-size: 16px;
+			font-size: 18px;
 			line-height: 21px;
 			margin-left: 12px;
 		}

@@ -16,17 +16,14 @@ export default createGlobalStyle`
 		outline: 0
 	}
 
-	/* html {
-		height: 100%;
-	} */
-
 	html, body, #root {
-		min-height: 100%;
+		height: 100%;
 	}
 
 	body {
 		-webkit-font-smoothing: antialiased;
 		background: linear-gradient(-180deg, #22202c, #402845);
+		max-height: 100%;
 	}
 
 	body, input, button {

@@ -70,8 +70,10 @@ export default function Dashboard() {
 					<div>
 						<Link to={`/meetup/${meetup_id}`}>
 							<button className="editar" type="button">
-								<MdEdit size={27} color="#fff" />
-								<strong>Editar</strong>
+								<div>
+									<MdEdit size={27} color="#fff" />
+									<strong>Editar</strong>
+								</div>
 							</button>
 						</Link>
 						<button
@@ -79,8 +81,10 @@ export default function Dashboard() {
 							className="deletar"
 							type="button"
 						>
-							<MdDeleteForever size={27} color="#fff" />
-							<strong>Cancelar</strong>
+							<div>
+								<MdDeleteForever size={27} color="#fff" />
+								<strong>Cancelar</strong>
+							</div>
 						</button>
 					</div>
 				</Top>

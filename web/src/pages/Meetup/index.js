@@ -81,14 +81,23 @@ export default function Meetup() {
 				initialData={initial || ''}
 			>
 				<BannerInput name="banner_id" />
-				<Input name="title" placeholder="Título do Meetup" />
 				<Input
+					autoComplete="off"
+					name="title"
+					placeholder="Título do Meetup"
+				/>
+				<Input
+					autoComplete="off"
 					multiline
 					name="description"
 					placeholder="Descrição completa"
 				/>
-				<DateInput className="date" name="date" autocomplete="off" />
-				<Input name="location" placeholder="Localização" />
+				<DateInput autoComplete="off" className="date" name="date" />
+				<Input
+					autoComplete="off"
+					name="location"
+					placeholder="Localização"
+				/>
 
 				<button className="save" type="submit">
 					Salvar Meetup

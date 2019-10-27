@@ -10,12 +10,10 @@ import { Container } from './styles';
 const schema = Yup.object().shape({
 	name: Yup.string(),
 	email: Yup.string().email(),
-	oldPassword: Yup.string().min(6),
-	password: Yup.string()
-		.min(6)
-		.when('oldPassword', (oldPassword, field) =>
-			oldPassword ? field.required() : field
-		),
+	oldPassword: Yup.string(),
+	password: Yup.string().when('oldPassword', (oldPassword, field) =>
+		oldPassword ? field.required().min(6) : field
+	),
 	passwordConfirm: Yup.string().when('password', (password, field) =>
 		password ? field.required().oneOf([Yup.ref('password')]) : field
 	),
@@ -32,8 +30,16 @@ export default function Profile() {
 	return (
 		<Container>
 			<Form schema={schema} initialData={profile} onSubmit={handleSubmit}>
-				<Input name="name" placeholder="Nome completo" />
-				<Input name="email" placeholder="Seu endereço de e-mail" />
+				<Input
+					name="name"
+					autoComplete="off"
+					placeholder="Nome completo"
+				/>
+				<Input
+					name="email"
+					autoComplete="off"
+					placeholder="Seu endereço de e-mail"
+				/>
 
 				<hr />
 

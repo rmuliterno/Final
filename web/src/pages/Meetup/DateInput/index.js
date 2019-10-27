@@ -26,6 +26,7 @@ export default function DatePicker({ name }) {
 	return (
 		<>
 			<ReactDatePicker
+				autocomplete="off"
 				name={fieldName}
 				placeholderText="Data do meetup"
 				selected={selected}

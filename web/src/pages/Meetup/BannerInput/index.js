@@ -42,18 +42,6 @@ export default function BannerInput() {
 	return (
 		<Container>
 			<label htmlFor="banner">
-				{!preview && (
-					<div className="centered-text">
-						<div>
-							<MdCameraAlt
-								className="icon-camera"
-								size={54}
-								color="#fff"
-							/>
-						</div>
-						<strong>Selecionar imagem</strong>
-					</div>
-				)}
 				<img src={preview || bitmap} alt="Banner" />
 				{!preview && (
 					<div className="centered-text">

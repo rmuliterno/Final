@@ -38,8 +38,6 @@ export default function Dashboard() {
 		loadSchedule();
 	}, []);
 
-	console.log(schedule);
-
 	return (
 		<Container>
 			<Header>
@@ -54,9 +52,7 @@ export default function Dashboard() {
 					<Schedule key={meetup.id}>
 						<strong>{meetup.title}</strong>
 						<div>
-							<strong className="date">
-								{dateFormat(meetup.date)}
-							</strong>
+							<strong>{dateFormat(meetup.date)}</strong>
 							<Link to={`details/${meetup.id}`}>
 								<MdChevronRight
 									className="icon-right"
