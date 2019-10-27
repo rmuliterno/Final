@@ -31,7 +31,7 @@ Meetups and subscriptions Navigation:
 
 When you have more than one subscription, deleting one will significally break the layout, not sure where the problem is. It kinda nullifies the styling of the component, it fixes itself on re-render.
 
-#### Finally
+#### Author's notes
 
 Hopefully you were able to run everything up until here, I salute you and thank you so much for taking a little bit of your time to check my work here. I'm really happy with how this project turned out and I think it's a really good one for a first full stack project.
 
