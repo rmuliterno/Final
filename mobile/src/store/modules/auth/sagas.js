@@ -39,6 +39,8 @@ export function* signUp({ payload }) {
 			email,
 			password,
 		});
+
+		Alert.alert('Sucesso', 'Você criou sua conta no MeetApp');
 	} catch (err) {
 		Alert.alert('Erro', 'Houve uma falha no cadastro');
 
