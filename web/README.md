@@ -15,11 +15,11 @@ You'll be greeted by a log in page, there's an option to register so try that fi
 After logging you'll be in the dashboard. I'll leave some demos of the app here for those that do not wish to set up everything to see it working.
 <br />
 
-### Meetup Creation: 
+Meetup Creation: 
 <br />
 ![Profile demo](../demos/meetupWeb.gif)
 
-### Profile Update:
+Profile Update:
 <br />
 ![Profile demo](../demos/profileWeb.gif)
 
