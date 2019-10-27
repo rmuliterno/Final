@@ -1,39 +1,38 @@
-# The Web
+# The Mobile
 
-This is the web-based part of the application, it is only meant for providers/organizers of meetups. Users can view, register, edit and delete meetups.
+This is the mobile part of the application, it is only meant for users that will attend the meetups. Users can view, subscribe, unsubscribe  to meetups and edit their profile. **Android only (for now)**
 
 ## How to run?
 
-First install all the dependencies with `yarn` or `npm install`, next you only need to alter the api route inside `src/services/api`, by default, it is set to `http://localhost:3434`.
+Oh boy.
 
-After this small setup, just run `yarn start` and the app should be running normally.
+First, run `yarn` or `npm install` to install everything this pretty boy needs to run.
 
-## Pages
+Second, change, if necessary, the `baseURL` for the api on the `src/services/api.js` file to match your backend. Note that using `localhost` will cause the images to not render on Android, so use your actual Ip address there.
 
-You'll be greeted by a log in page, there's an option to register so try that first.
+After everything is done, just run `react-native run-android` to install the app and run it with the metro bundler.
 
-After logging you'll be in the dashboard. I'll leave some demos of the app here for those that do not wish to set up everything to see it working. (I'm so sorry for the gif's quality but it's the best I can do for now)
+Connecting to reactotron can sometimes be a little tricky when it comes to Android or even more so on my case (physical device), on the `src/config/ReactotronConfig.js` file, change the host to your local Ip address and pray to any God of your choosing to get it to connect. You may need to refresh the app or even run it again.
+
+## Navigation
+
+Simple navigation within the app. There are 3 pages after you log in. Meetups, this will show all available meetups by date that you select. Subscriptions, lists every meetup that you have subscribed to. And profile, shows user info and allows to change your credentials.
 <br />
 
-### Meetup Creation:
+Account Creation and Log in:
 
-<br />
-![Profile demo](../demos/meetupWeb.gif)
+![signup demo](../demos/signupMobile.gif)
 
-### Profile Update:
+Meetups and subscriptions Navigation:
 
-<br />
-![Profile demo](../demos/profileWeb.gif)
+![meetup demo](../demos/meetupMobile.gif)
 
 #### Known issues
 
-As nothing is perfect in this life, there are some issues with this app.<br /><br />
-The layout may break depending on some very specific viewports, currently working on fixing this.<br />
-The profile update may not work sometimes, I'm still not sure whether this an issue on redux or on the server since everything is passing perfectly, I'll look into it when there's more time available. <br />
-The biggest of them all, the edit meetup screen won't load the meetup's banner and/or date. Forcing you to upload these informations all over again every time you try to alter something, huge no-no and will be fixed soon.
+When you have more than one subscription, deleting one will significally break the layout, not sure where the problem is. It kinda nullifies the styling of the component, it fixes itself on re-render.
 
-#### Finally
+#### Author's notes
 
-I hope you were able to run this, I put a lot of time and effort into learning everything in display here and to be able to do this when I did not knew what Javascript was not even one year ago really motivates me to keep going on this journey.
+Hopefully you were able to run everything up until here, I salute you and thank you so much for taking a little bit of your time to check my work here. I'm really happy with how this project turned out and I think it's a really good one for a first full stack project.
 
-Have a joyous day and just keep coding!
+Native is awesome!
