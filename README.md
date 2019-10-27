@@ -6,6 +6,7 @@ since I don't have the resources required to develop on IOS.
 ## Introduction
 
 Greetings and salutations dear human, welcome to my app. This is the final challenge of the GoStack8 bootcamp. As this is my first fullstack app, there probably is a lot of room for improvement so I'll try to keep this updated as I learn more and more about programming.
+Also, it asynchronously sends e-mails to organizers when users subscribe to their meetups.
 
 ### How do I run this?
 
@@ -27,8 +28,6 @@ Lastly, `it works on my machine`.
 
 Fix nos subscriptions após excluir <br />
 Prop type and schema validation<br />
-Sugestão de docker *docker file*<br />
-Melhorar/Adicionar README no projeto inteiro<br />
 
 
 Cheers!
