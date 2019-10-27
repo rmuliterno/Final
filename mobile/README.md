@@ -8,22 +8,22 @@ First install all the dependencies with `yarn` or `npm install`, next you only n
 
 After this small setup, just run `yarn start` and the app should be running normally.
 
-## Pages
+## Navigation
 
 You'll be greeted by a log in page, there's an option to register so try that first.
 
 After logging you'll be in the dashboard. I'll leave some demos of the app here for those that do not wish to set up everything to see it working. (I'm so sorry for the gif's quality but it's the best I can do for now)
 <br />
 
-### Meetup Creation:
+Account Creation and Log in:
 
 <br />
-![Profile demo](../demos/meetupWeb.gif)
+![signup demo](../demos/signupMobile.gif)
 
-### Profile Update:
+Meetups and subscriptions Navigation:
 
 <br />
-![Profile demo](../demos/profileWeb.gif)
+![meetup demo](../demos/meetupMobile.gif)
 
 #### Known issues
 
