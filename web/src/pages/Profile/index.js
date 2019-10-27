@@ -55,7 +55,7 @@ export default function Profile() {
 				/>
 				<Input
 					type="password"
-					name="confirmPassword"
+					name="passwordConfirm"
 					placeholder="Confirmação de senha"
 				/>
 
