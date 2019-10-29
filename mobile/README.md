@@ -19,13 +19,12 @@ Connecting to reactotron can sometimes be a little tricky when it comes to Andro
 Simple navigation within the app. There are 3 pages after you log in. Meetups, this will show all available meetups by date that you select. Subscriptions, lists every meetup that you have subscribed to. And profile, shows user info and allows to change your credentials.
 <br />
 
-Account Creation and Log in:
+Account Creation and Log in (left) and Meetups and subscriptions Navigation (right):
 
-![signup demo](../demos/signupMobile.gif)
-
-Meetups and subscriptions Navigation:
-
-![meetup demo](../demos/meetupMobile.gif)
+<p align="center">
+  <img src="../demos/signupMobile.gif" width="40%" alt="signup"/>
+  <img src="../demos/meetupMobile.gif" width="40%" alt="meetup demo"/>
+</p>
 
 #### Known issues
 
